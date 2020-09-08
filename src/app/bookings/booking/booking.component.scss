@@ -1,0 +1,37 @@
+button.btn.btn-primary.active {
+  color: #ffffff;
+  background: #a92335;
+  border: navajowhite;
+}
+button.btn.btn-primary {
+  color: #4d4d4d;
+  background: #ffffff;
+  border: navajowhite;
+}
+button.btn.btn-primary:focus {
+  outline: none !important;
+}
+.form-control {
+  border: 2px solid #ccc;
+  border-radius: 0px;
+}
+a.advanced-search {
+  text-decoration: underline;
+  font-style: italic;
+  font-family: serif;
+  font-size: 16px;
+  color: #a92335;
+  float: right;
+  cursor: pointer;
+}
+.tourism-type {
+  float: right;
+  border: 1px solid #cccccc;
+  border-radius: 4px;
+}
+.btn-primary[type="submit"] {
+  padding: 4px 22px;
+  color: #ffffff !important;
+  background: #a92335 !important;
+  border-bottom: 4px solid #771220 !important;
+}

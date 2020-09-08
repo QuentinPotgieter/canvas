@@ -1,0 +1,31 @@
+<div class="container">
+  <div class="row col-md-8 root-search-box">
+    <div class="form-tabs">
+      <!-- Notice searchbox tab persists when navigating from another page -->
+      <!-- Use of custom directive -->
+      <span
+        [appBadgeColor]="'red'"
+        defaultColor="rgba(30, 30, 30, 0.7)"
+        *ngFor="let tab of formTabs"
+        [class]="
+          tab.formID === shared$.source['value']['formid']
+            ? 'search-form-nav active'
+            : 'search-form-nav'
+        "
+        (click)="setForm(tab.formID)"
+      >
+        <fa-icon
+          *ngIf="tab.icon"
+          [icon]="tab.icon"
+          [class]="tab.title == 'Flights' ? 'rotate-plane' : ''"
+        ></fa-icon
+        >{{ tab.title | uppercase }}
+        <span *ngIf="tab.onSale" class="badge badge-danger">Save</span>
+      </span>
+    </div>
+
+    <div class="root-search-type">
+      <app-booking></app-booking>
+    </div>
+  </div>
+</div>

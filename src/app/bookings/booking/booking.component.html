@@ -1,0 +1,224 @@
+<div class="book">
+  <div class="row">
+    <div class="col-sm-7">
+      <h4>
+        BOOK YOUR
+        <!-- Use of custom Pipe -->
+        {{ shared$.source["value"]["formid"] | getFormName | uppercase }}S
+      </h4>
+    </div>
+    <div class="col-sm-5">
+      <div class="btn-group tourism-type" role="group">
+        <button
+          (click)="onTourismType('Domestic')"
+          type="button"
+          [class]="
+            tourismType == 'Domestic'
+              ? 'btn btn-primary active'
+              : 'btn btn-primary'
+          "
+        >
+          Domestic
+        </button>
+        <button
+          (click)="onTourismType('International')"
+          type="button"
+          [class]="
+            tourismType == 'International'
+              ? 'btn btn-primary active'
+              : 'btn btn-primary'
+          "
+        >
+          International
+        </button>
+      </div>
+    </div>
+  </div>
+  <form [formGroup]="profileForm" (ngSubmit)="onSubmit()">
+    <div>
+      <div formGroupName="destination">
+        <div class="row">
+          <div
+            class="col-sm-6"
+            *ngIf="
+              shared$.source['value']['formid'] == 0 ||
+              shared$.source['value']['formid'] == 2
+            "
+          >
+            <label for="fromL">From</label>
+            <input
+              [placeholder]="fromPlaceholder"
+              type="text"
+              formControlName="from"
+              required
+              class="form-control"
+              id="fromL"
+            />
+          </div>
+          <div class="col-sm-6">
+            <label for="toL">To</label>
+            <input
+              [placeholder]="toPlaceholder"
+              type="text"
+              formControlName="to"
+              required
+              class="form-control"
+              id="toL"
+            />
+          </div>
+        </div>
+      </div>
+
+      <div
+        formGroupName="dates"
+        *ngIf="
+          shared$.source['value']['formid'] == 0 ||
+          shared$.source['value']['formid'] == 2
+        "
+      >
+        <div class="row">
+          <div class="col-sm-5">
+            <label for="departureL">Departure</label>
+            <input
+              placeholder="MM/DD/YYYY"
+              [min]="minDate"
+              [max]="returnDate"
+              type="text"
+              onfocus="(this.type='date')"
+              formControlName="departure"
+              required
+              class="form-control"
+              id="departureL"
+            />
+          </div>
+          <div class="col-sm-5">
+            <label for="returnL">Return</label>
+            <input
+              placeholder="MM/DD/YYYY"
+              [min]="minDate"
+              type="text"
+              onfocus="(this.type='date')"
+              formControlName="return"
+              required
+              class="form-control"
+              id="returnL"
+            />
+          </div>
+          <div class="col-sm-2">
+            <label for="adultsL">Adults</label>
+            <input
+              min="0"
+              placeholder="2"
+              type="number"
+              formControlName="adults"
+              required
+              class="form-control"
+              id="adultsL"
+            />
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div
+      formGroupName="hotel"
+      *ngIf="
+        shared$.source['value']['formid'] == 1 ||
+        shared$.source['value']['formid'] == 2
+      "
+    >
+      <div class="row">
+        <div class="col-sm-5">
+          <label for="checkinL">Check-in</label>
+          <input
+            placeholder="MM/DD/YYYY"
+            [min]="minDate"
+            [max]="returnDate"
+            type="text"
+            onfocus="(this.type='date')"
+            formControlName="checkin"
+            required
+            class="form-control"
+            id="checkinL"
+          />
+        </div>
+        <div class="col-sm-5">
+          <label for="checkoutL">Check-out</label>
+          <input
+            placeholder="MM/DD/YYYY"
+            [min]="minDate"
+            type="text"
+            onfocus="(this.type='date')"
+            formControlName="checkout"
+            required
+            class="form-control"
+            id="checkoutL"
+          />
+        </div>
+        <div class="col-sm-2" *ngIf="shared$.source['value']['formid'] != 2">
+          <label for="adultsL">Adults</label>
+          <input
+            min="0"
+            placeholder="2"
+            type="number"
+            formControlName="adults"
+            required
+            class="form-control"
+            id="adultsL"
+          />
+        </div>
+      </div>
+    </div>
+
+    <div formGroupName="advanced" *ngIf="advancedSearch">
+      <div class="row">
+        <div class="col-sm-2">
+          <label for="childrenL">Children</label>
+          <input
+            placeholder="0"
+            type="number"
+            min="0"
+            formControlName="children"
+            required
+            class="form-control"
+            id="childrenL"
+          />
+        </div>
+        <div class="col-sm-2">
+          <label for="infantsL">Infants</label>
+          <input
+            placeholder="0"
+            type="number"
+            min="0"
+            formControlName="infants"
+            required
+            class="form-control"
+            id="infantsL"
+          />
+        </div>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-sm-6">
+        <button
+          type="submit"
+          class="btn btn-primary"
+          [disabled]="!profileForm.valid"
+        >
+          SEARCH FLIGHTS
+        </button>
+      </div>
+      <div class="col-sm-6">
+        <a class="advanced-search" (click)="advancedSearch = !advancedSearch"
+          >Advanced Search</a
+        >
+      </div>
+    </div>
+  </form>
+  <!-- Left here for reviewers to see form status -->
+  <div *ngIf="advancedSearch">
+    <p>Form Value: {{ profileForm.value | json }}</p>
+    <p>Form Status: {{ profileForm.status }}</p>
+  </div>
+</div>

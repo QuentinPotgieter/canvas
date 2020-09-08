@@ -1,0 +1,21 @@
+<div class="pre-header">
+  <div class="container">
+    <span class="pre-header-links" *ngFor="let link of preLinks">
+      <a
+        *ngIf="!link.isSelect; else select"
+        routerLink="{{ link.link }}"
+        [innerHTML]="link.title | uppercase"
+      ></a>
+      <ng-template #select>
+        <select>
+          <option *ngFor="let option of link.selectOptions">
+            {{ option | uppercase }}
+          </option>
+        </select>
+      </ng-template>
+    </span>
+    <span class="pre-header-social-links" *ngFor="let link of socialLinks">
+      <a routerLink="{{ link.link }}"><fa-icon [icon]="link.icon"></fa-icon></a>
+    </span>
+  </div>
+</div>

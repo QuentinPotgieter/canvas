@@ -1,0 +1,42 @@
+.book {
+  background-color: rgba(255, 255, 255, 0.3);
+}
+.search-form-nav {
+  cursor: pointer;
+  padding: 10px 12px;
+  color: #ffffff;
+  background-color: rgba(30, 30, 30, 0.7);
+  margin-left: 1px;
+}
+.search-form-nav.active {
+  background-color: #a92335 !important;
+}
+.root-search-box {
+  padding-top: 100px !important;
+}
+.root-search-type {
+  padding: 32px;
+  margin-top: 8px;
+  border-top: 4px solid #a92335;
+  background-color: rgba(243, 243, 235, 0.9);
+}
+@media only screen and (max-width: 600px) {
+  .form-tabs > span {
+    display: block;
+  }
+  .root-search-box {
+    padding-top: 0px !important;
+  }
+}
+fa-icon {
+  margin-right: 6px;
+}
+span.badge.badge-danger {
+  background-color: #a92335;
+  border-radius: 2px;
+}
+
+.page-form {
+  border-top: 4px solid #a92335;
+  background-color: rgba(243, 243, 235, 0.9);
+}
